@@ -2,6 +2,7 @@ package com.xprojects.springrestfulapi.service;
 
 import com.xprojects.springrestfulapi.entity.User;
 import com.xprojects.springrestfulapi.model.RegisterUserRequest;
+import com.xprojects.springrestfulapi.model.UserResponse;
 import com.xprojects.springrestfulapi.respository.UserRepository;
 import com.xprojects.springrestfulapi.security.BCrypt;
 import jakarta.transaction.Transactional;
@@ -35,5 +36,12 @@ public class UserService {
         user.setName(request.getName());
 
         userRepository.save(user);
+    }
+
+    public UserResponse get(User user){
+        return UserResponse.builder()
+                .username(user.getUsername())
+                .name(user.getName())
+                .build();
     }
 }
